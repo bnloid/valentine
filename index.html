@@ -11,13 +11,16 @@
         background: pink;
         text-align: center;
         overflow: hidden;
+        margin: 0;
+        padding: 0;
     }
 
     h1 {
-        margin-top: 60px;
-        font-size: 2.5rem;
+        margin-top: 90px;
+        font-size: 2.3rem;
         color: #d1006c;
         text-shadow: 1px 1px 2px white;
+        padding: 0 20px;
     }
 
     .btn {
@@ -39,6 +42,9 @@
         background: #ffffff;
         color: #ff3e96;
         position: absolute;
+        left: 50%;
+        top: 60%;
+        transform: translateX(-50%);
     }
 
     /* Celebration popup */
@@ -48,7 +54,8 @@
         left: 50%;
         transform: translate(-50%, -50%) scale(0);
         background: white;
-        width: 350px;
+        width: 80%;
+        max-width: 350px;
         padding: 30px;
         border-radius: 20px;
         box-shadow: 0 0 20px rgba(0,0,0,0.2);
@@ -93,12 +100,12 @@
     const yesBtn = document.getElementById("yesBtn");
     const popup = document.getElementById("popup");
 
-    // Make NO button run away from the cursor
-    document.addEventListener("mousemove", (e) => {
+    // Move No Button Logic (Desktop + Mobile)
+    function moveNoButton(x, y) {
         const rect = noBtn.getBoundingClientRect();
         const distance = Math.hypot(
-            e.clientX - (rect.left + rect.width / 2),
-            e.clientY - (rect.top + rect.height / 2)
+            x - (rect.left + rect.width / 2),
+            y - (rect.top + rect.height / 2)
         );
 
         if (distance < 120) {
@@ -108,9 +115,29 @@
             noBtn.style.left = `${randomX}px`;
             noBtn.style.top = `${randomY}px`;
         }
+    }
+
+    // Desktop movement
+    document.addEventListener("mousemove", (e) => {
+        moveNoButton(e.clientX, e.clientY);
     });
 
-    // When clicking YES — show popup + hearts
+    // Mobile movement — follow finger
+    document.addEventListener("touchmove", (e) => {
+        const touch = e.touches[0];
+        moveNoButton(touch.clientX, touch.clientY);
+    });
+
+    // Prevent tapping NO button on mobile — teleport before touch
+    noBtn.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        const randomX = Math.random() * (window.innerWidth - 150);
+        const randomY = Math.random() * (window.innerHeight - 150);
+        noBtn.style.left = `${randomX}px`;
+        noBtn.style.top = `${randomY}px`;
+    });
+
+    // YES button celebration
     yesBtn.addEventListener("click", () => {
         popup.style.transform = "translate(-50%, -50%) scale(1)";
         launchHearts();

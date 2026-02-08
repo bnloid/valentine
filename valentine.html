@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="valentine-body">
+
+<button class="back-home" onclick="location.href='home.html'">⟵ Back to Home</button>
+
+<div class="ask-container">
+    <h1>Will you be my Valentine? 💖</h1>
+
+    <div class="buttons">
+        <button id="yesBtn" class="yes">Yes 💗</button>
+        <button id="noBtn" class="no">No 😢</button>
+    </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+noBtn.addEventListener("mouseover", () => {
+    let x = Math.random() * window.innerWidth * 0.8;
+    let y = Math.random() * window.innerHeight * 0.8;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+yesBtn.addEventListener("click", () => {
+    createParticles("flower");
+    createParticles("heart");
+    setTimeout(() => {
+        alert("Yay! You're my Valentine! 💘💐❤️");
+    }, 800);
+});
+
+function createParticles(type) {
+    for (let i = 0; i < 30; i++) {
+        let p = document.createElement("div");
+
+        if (type === "flower") {
+            p.classList.add("flower");
+        } else {
+            p.classList.add("heart");
+        }
+
+        p.style.left = Math.random() * window.innerWidth + "px";
+        document.body.appendChild(p);
+
+        setTimeout(() => p.remove(), 3500);
+    }
+}
+</script>
+
+</body>
+</html>

@@ -2,174 +2,34 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hi baby</title>
-
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: pink;
-        text-align: center;
-        overflow: hidden;
-        margin: 0;
-        padding: 0;
-    }
-
-    h1 {
-        margin-top: 90px;
-        font-size: 2.3rem;
-        color: #d1006c;
-        text-shadow: 1px 1px 2px white;
-        padding: 0 20px;
-    }
-
-    .btn {
-        padding: 15px 35px;
-        font-size: 20px;
-        border: none;
-        cursor: pointer;
-        margin: 20px;
-        border-radius: 30px;
-        transition: 0.2s ease;
-    }
-
-    #yesBtn {
-        background: #ff3e96;
-        color: white;
-    }
-
-    #noBtn {
-        background: #ffffff;
-        color: #ff3e96;
-        position: absolute;
-        left: 50%;
-        top: 60%;
-        transform: translateX(-50%);
-    }
-
-    /* Celebration popup */
-    #popup {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        background: white;
-        width: 80%;
-        max-width: 350px;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.2);
-        text-align: center;
-        transition: 0.3s ease;
-        z-index: 20;
-    }
-
-    #popup h2 {
-        color: #ff3e96;
-        margin-bottom: 10px;
-    }
-
-    .heart, .flower {
-        position: fixed;
-        font-size: 24px;
-        animation: floatUp 2s linear infinite;
-    }
-
-    @keyframes floatUp {
-        from {transform: translateY(0); opacity: 1;}
-        to {transform: translateY(-120px); opacity: 0;}
-    }
-</style>
+<title>Login</title>
+<link rel="stylesheet" href="style.css">
 </head>
+<body class="login-body">
 
-<body>
+<div class="login-container">
+    <h2>Welcome My Love 💗</h2>
 
-<h1>Baby, will you be my Valentine? ❤️</h1>
-
-<button id="yesBtn" class="btn">Yes</button>
-<button id="noBtn" class="btn">No</button>
-
-<div id="popup">
-    <h2>Sheeeeeeeesh!!! ❤️</h2>
-    <p>See u this sat baby!!! Sorry jean awwww</p>
+    <form onsubmit="return login(event)">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button type="submit">Login</button>
+        <p id="error" class="error"></p>
+    </form>
 </div>
 
 <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const popup = document.getElementById("popup");
+function login(e) {
+    e.preventDefault();
+    let u = document.getElementById("username").value;
+    let p = document.getElementById("password").value;
 
-    // Move No Button Logic (Desktop + Mobile)
-    function moveNoButton(x, y) {
-        const rect = noBtn.getBoundingClientRect();
-        const distance = Math.hypot(
-            x - (rect.left + rect.width / 2),
-            y - (rect.top + rect.height / 2)
-        );
-
-        if (distance < 120) {
-            const randomX = Math.random() * (window.innerWidth - 150);
-            const randomY = Math.random() * (window.innerHeight - 150);
-
-            noBtn.style.left = `${randomX}px`;
-            noBtn.style.top = `${randomY}px`;
-        }
+    if (u === "baby" && p === "sinta") {
+        window.location.href = "home.html";
+    } else {
+        document.getElementById("error").innerText = "Oops you're not my girl 😘";
     }
-
-    document.addEventListener("mousemove", (e) => moveNoButton(e.clientX, e.clientY));
-
-    document.addEventListener("touchmove", (e) => {
-        const touch = e.touches[0];
-        moveNoButton(touch.clientX, touch.clientY);
-    });
-
-    noBtn.addEventListener("touchstart", (e) => {
-        e.preventDefault();
-        const randomX = Math.random() * (window.innerWidth - 150);
-        const randomY = Math.random() * (window.innerHeight - 150);
-        noBtn.style.left = `${randomX}px`;
-        noBtn.style.top = `${randomY}px`;
-    });
-
-    // YES button
-    yesBtn.addEventListener("click", () => {
-        popup.style.transform = "translate(-50%, -50%) scale(1)";
-        launchHearts();
-        launchFlowers();
-    });
-
-    // Heart animation
-    function launchHearts() {
-        for (let i = 0; i < 30; i++) {
-            const heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
-            document.body.appendChild(heart);
-
-            heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.top = window.innerHeight + "px";
-
-            setTimeout(() => heart.remove(), 2000);
-        }
-    }
-
-    // 🌸 Flower animation
-    function launchFlowers() {
-        const flowers = ["🌸", "🌺", "🌼", "🌷", "💐"];
-
-        for (let i = 0; i < 25; i++) {
-            const flower = document.createElement("div");
-            flower.classList.add("flower");
-            flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
-            document.body.appendChild(flower);
-
-            flower.style.left = Math.random() * window.innerWidth + "px";
-            flower.style.top = window.innerHeight + "px";
-            flower.style.fontSize = (20 + Math.random() * 20) + "px";
-
-            setTimeout(() => flower.remove(), 2000);
-        }
-    }
+}
 </script>
 
 </body>

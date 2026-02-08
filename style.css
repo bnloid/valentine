@@ -1,0 +1,212 @@
+/* GLOBAL --------------------------------------------------- */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #ffe6f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* LOGIN PAGE ------------------------------------------------ */
+.login-container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 350px;
+    box-shadow: 0 5px 15px rgba(255, 0, 122, 0.3);
+}
+
+.login-container input {
+    width: 90%;
+    margin: 10px 0;
+    padding: 12px;
+    border: 2px solid pink;
+    border-radius: 10px;
+    outline: none;
+}
+
+.login-container button {
+    width: 95%;
+    padding: 12px;
+    background: #ff66a3;
+    border: none;
+    color: white;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+/* HOME ------------------------------------------------------ */
+.home-container {
+    text-align: center;
+}
+
+.valentine-btn,
+.logout-btn {
+    display: block;
+    padding: 15px;
+    width: 250px;
+    margin: 10px auto;
+    border-radius: 15px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.valentine-btn {
+    background: #ff69b4;
+    color: white;
+}
+
+.logout-btn {
+    background: #ffcccc;
+}
+
+/* VALENTINE PAGE ------------------------------------------- */
+.ask-container {
+    text-align: center;
+}
+
+.buttons button {
+    padding: 15px 40px;
+    font-size: 18px;
+    border-radius: 15px;
+    border: none;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.yes {
+    background: #ff4da6;
+    color: white;
+}
+
+.no {
+    background: #ffd6e7;
+    color: black;
+    position: absolute;
+}
+
+/* BACK BUTTON ---------------------------------------------- */
+.back-home {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 12px;
+    border: 2px solid pink;
+    cursor: pointer;
+}
+
+/* FLOWER ANIMATION ---------------------------------------- */
+.flower {
+    position: absolute;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    animation: fall 3s linear forwards;
+    pointer-events: none;
+}
+
+.flower::before,
+.flower::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: pink;
+    border-radius: 50%;
+}
+
+/* Two overlapping petals */
+.flower::before {
+    top: -5px;
+    left: 2px;
+}
+.flower::after {
+    top: 2px;
+    left: -5px;
+}
+
+/* Center of flower */
+.flower span {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: yellow;
+    border-radius: 50%;
+    top: 6px;
+    left: 6px;
+}
+
+/* Heart (pure CSS heart shape) */
+.heart {
+    position: absolute;
+    top: -20px;
+    width: 20px;
+    height: 20px;
+    background: #ff4da6;
+    transform: rotate(45deg);
+    animation: fall 3.2s linear forwards;
+    pointer-events: none;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ff4da6;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    left: -10px;
+    top: 0;
+}
+
+/* Falling animation */
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* MOBILE --------------------------------------------------- */
+@media (max-width: 600px) {
+
+    .login-container,
+    .home-container,
+    .ask-container {
+        width: 90%;
+    }
+
+    .buttons button {
+        width: 80%;
+        position: relative !important;
+        transform: none !important;
+        margin: 15px auto;
+        display: block;
+    }
+
+    /* keep NO button unclickable but still dodging */
+    .no {
+        position: absolute;
+    }
+}

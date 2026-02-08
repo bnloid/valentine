@@ -8,7 +8,7 @@
 <body class="login-body">
 
 <div class="login-container">
-    <h2>Welcome My Love 💗</h2>
+    <h2>Baby! You're here!</h2>
 
     <form onsubmit="return login(event)">
         <input type="text" id="username" placeholder="Username">
@@ -19,6 +19,7 @@
 </div>
 
 <script>
+// Login function
 function login(e) {
     e.preventDefault();
     let u = document.getElementById("username").value;
@@ -29,6 +30,35 @@ function login(e) {
     } else {
         document.getElementById("error").innerText = "Oops you're not my girl 😘";
     }
+}
+
+// Floating images
+const imageCount = 12; // number of floating images
+const images = [
+    "Background/1.jpg",
+    "Background/2.jpg",
+    "Background/3.jpg",
+    "Background/4.jpg",
+    "Background/5.jpg",
+    "Background/6.jpg",
+    "Background/9.jpg",
+    "Background/10.jpg",
+    "Background/11.jpg",
+    "Background/12.jpg"
+    // add more filenames here from your Background folder
+];
+
+for (let i = 0; i < imageCount; i++) {
+    let img = document.createElement("img");
+    img.src = images[Math.floor(Math.random() * images.length)];
+    img.classList.add("floating-img");
+
+    // Random position and animation speed
+    img.style.left = Math.random() * window.innerWidth + "px";
+    img.style.animationDuration = (5 + Math.random() * 10) + "s";
+    img.style.width = (50 + Math.random() * 100) + "px";
+
+    document.body.appendChild(img);
 }
 </script>
 

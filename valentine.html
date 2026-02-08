@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Be My Valentine</title>
+<title>For Baby</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="valentine-body">
@@ -10,7 +10,7 @@
 <button class="back-home" onclick="location.href='home.html'">⟵ Back to Home</button>
 
 <div class="ask-container">
-    <h1>Will you be my Valentine? 💖</h1>
+    <h1>Hi Baby!!! will you be my Valentine? 💖</h1>
 
     <div class="buttons">
         <button id="yesBtn" class="yes">Yes 💗</button>
@@ -22,17 +22,26 @@
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 
-noBtn.addEventListener("mouseover", () => {
-    let x = Math.random() * window.innerWidth * 0.8;
-    let y = Math.random() * window.innerHeight * 0.8;
-    noBtn.style.transform = `translate(${x}px, ${y}px)`;
-});
+function moveButtonAwayFromCursor(e) {
+    let randomX = Math.random() * (window.innerWidth - 150);
+    let randomY = Math.random() * (window.innerHeight - 150);
+    
+    noBtn.style.position = "fixed";
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+}
+
+// Desktop: mouseover event
+noBtn.addEventListener("mouseover", moveButtonAwayFromCursor);
+
+// Mobile: click event
+noBtn.addEventListener("click", moveButtonAwayFromCursor);
 
 yesBtn.addEventListener("click", () => {
     createParticles("flower");
     createParticles("heart");
     setTimeout(() => {
-        alert("Yay! You're my Valentine! 💘💐❤️");
+        alert("Awwwwwwww! Can't wait to spend my time with u this sat babyyyyy 💘💐❤️");
     }, 800);
 });
 

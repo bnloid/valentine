@@ -11,6 +11,8 @@ body {
 
 /* LOGIN PAGE ------------------------------------------------ */
 .login-container {
+    position: relative;
+    z-index: 10; /* stay above floating images */
     background: white;
     padding: 30px;
     border-radius: 20px;
@@ -37,6 +39,23 @@ body {
     border-radius: 12px;
     font-size: 16px;
     margin-top: 10px;
+}
+
+.floating-img {
+    position: absolute;
+    width: 80px; /* adjust size */
+    opacity: 0.7;
+    pointer-events: none; /* so it doesn't block clicks */
+    animation: float linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+    }
 }
 
 .error {
@@ -92,7 +111,6 @@ body {
 .no {
     background: #ffd6e7;
     color: black;
-    position: absolute;
 }
 
 /* BACK BUTTON ---------------------------------------------- */
@@ -200,13 +218,12 @@ body {
     .buttons button {
         width: 80%;
         position: relative !important;
-        transform: none !important;
         margin: 15px auto;
         display: block;
     }
 
-    /* keep NO button unclickable but still dodging */
+    /* keep NO button able to dodge on mobile */
     .no {
-        position: absolute;
+        position: fixed !important;
     }
 }

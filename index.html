@@ -69,9 +69,8 @@
         margin-bottom: 10px;
     }
 
-    .heart {
+    .heart, .flower {
         position: fixed;
-        color: red;
         font-size: 24px;
         animation: floatUp 2s linear infinite;
     }
@@ -85,14 +84,14 @@
 
 <body>
 
-<h1>Will you be my Valentine? ❤️</h1>
+<h1>Baby, will you be my Valentine? ❤️</h1>
 
 <button id="yesBtn" class="btn">Yes</button>
 <button id="noBtn" class="btn">No</button>
 
 <div id="popup">
-    <h2>Yay! ❤️</h2>
-    <p>You are now officially my Valentine!</p>
+    <h2>Sheeeeeeeesh!!! ❤️</h2>
+    <p>See u this sat baby!!! Sorry jean awwww</p>
 </div>
 
 <script>
@@ -117,18 +116,13 @@
         }
     }
 
-    // Desktop movement
-    document.addEventListener("mousemove", (e) => {
-        moveNoButton(e.clientX, e.clientY);
-    });
+    document.addEventListener("mousemove", (e) => moveNoButton(e.clientX, e.clientY));
 
-    // Mobile movement — follow finger
     document.addEventListener("touchmove", (e) => {
         const touch = e.touches[0];
         moveNoButton(touch.clientX, touch.clientY);
     });
 
-    // Prevent tapping NO button on mobile — teleport before touch
     noBtn.addEventListener("touchstart", (e) => {
         e.preventDefault();
         const randomX = Math.random() * (window.innerWidth - 150);
@@ -137,10 +131,11 @@
         noBtn.style.top = `${randomY}px`;
     });
 
-    // YES button celebration
+    // YES button
     yesBtn.addEventListener("click", () => {
         popup.style.transform = "translate(-50%, -50%) scale(1)";
         launchHearts();
+        launchFlowers();
     });
 
     // Heart animation
@@ -155,6 +150,24 @@
             heart.style.top = window.innerHeight + "px";
 
             setTimeout(() => heart.remove(), 2000);
+        }
+    }
+
+    // 🌸 Flower animation
+    function launchFlowers() {
+        const flowers = ["🌸", "🌺", "🌼", "🌷", "💐"];
+
+        for (let i = 0; i < 25; i++) {
+            const flower = document.createElement("div");
+            flower.classList.add("flower");
+            flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+            document.body.appendChild(flower);
+
+            flower.style.left = Math.random() * window.innerWidth + "px";
+            flower.style.top = window.innerHeight + "px";
+            flower.style.fontSize = (20 + Math.random() * 20) + "px";
+
+            setTimeout(() => flower.remove(), 2000);
         }
     }
 </script>

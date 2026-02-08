@@ -65,11 +65,15 @@ body {
 
 /* HOME ------------------------------------------------------ */
 .home-container {
+    position: relative;
+    z-index: 10; /* stay above floating images */
     text-align: center;
 }
 
 .valentine-btn,
 .logout-btn {
+    position: relative;
+    z-index: 10; /* stay above floating images */
     display: block;
     padding: 15px;
     width: 250px;
@@ -91,10 +95,14 @@ body {
 
 /* VALENTINE PAGE ------------------------------------------- */
 .ask-container {
+    position: relative;
+    z-index: 10; /* stay above floating images */
     text-align: center;
 }
 
 .buttons button {
+    position: relative;
+    z-index: 10; /* stay above floating images */
     padding: 15px 40px;
     font-size: 18px;
     border-radius: 15px;

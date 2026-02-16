@@ -208,6 +208,15 @@ body {
     border-color: #ff4d4d;
 }
 
+.instructions {
+    text-align: center;
+    margin-top: 450px;
+    font-size: 18px;
+    color: #d63384;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+}
+
 /* Arena border glow */
 #game-area::after {
     content: "";
